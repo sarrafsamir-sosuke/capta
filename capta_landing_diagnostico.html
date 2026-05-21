@@ -331,6 +331,67 @@ nav{
 }
 .cta-plan.primary:hover{background:#085041}
 
+
+/* DIAGNOSTIC */
+.diagnostic-section{
+  padding:5rem 2rem;background:var(--white);
+  border-top:0.5px solid var(--border);
+  border-bottom:0.5px solid var(--border);
+}
+.diagnostic-wrap{
+  max-width:960px;margin:0 auto;
+  background:linear-gradient(135deg,#F9FAFB 0%,#E1F5EE 100%);
+  border:0.5px solid #A7F3D0;
+  border-radius:20px;
+  padding:2.5rem;
+  position:relative;
+  overflow:hidden;
+}
+.diagnostic-wrap::before{
+  content:'';position:absolute;right:-80px;top:-80px;
+  width:220px;height:220px;border-radius:50%;
+  background:rgba(29,158,117,.12);
+}
+.diagnostic-head{max-width:620px;position:relative;z-index:1}
+.diagnostic-head h2{
+  font-size:clamp(1.6rem,3vw,2.2rem);
+  line-height:1.15;letter-spacing:-.02em;
+  margin-bottom:.75rem;color:var(--ink);
+}
+.diagnostic-head p{
+  font-size:15px;color:var(--muted);
+  line-height:1.7;margin-bottom:1.75rem;
+}
+.diagnostic-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;margin:2rem 0;position:relative;z-index:1;
+}
+.diagnostic-card{
+  background:rgba(255,255,255,.82);
+  border:0.5px solid rgba(15,110,86,.18);
+  border-radius:var(--radius);
+  padding:1.35rem;
+}
+.diagnostic-card span{
+  display:inline-flex;width:34px;height:34px;
+  border-radius:10px;align-items:center;justify-content:center;
+  background:var(--green-dark);color:var(--green-bg);
+  font-size:16px;margin-bottom:.85rem;
+}
+.diagnostic-card h3{
+  font-size:15px;font-weight:700;margin-bottom:.45rem;color:var(--ink);
+}
+.diagnostic-card p{
+  font-size:13px;color:var(--muted);line-height:1.55;
+}
+.diagnostic-actions{
+  display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  position:relative;z-index:1;
+}
+.diagnostic-note{
+  font-size:12px;color:var(--green-dark);font-weight:600;
+}
+
 /* ROI */
 .roi-section{
   padding:5rem 2rem;
@@ -427,42 +488,43 @@ footer a{color:#9FE1CB;text-decoration:none}
 <nav>
   <div class="nav-logo">CAPTA</div>
   <ul class="nav-links">
+    <li><a href="#diagnostico">Diagnóstico</a></li>
     <li><a href="#solucoes">Soluções</a></li>
     <li><a href="#como-funciona">Como funciona</a></li>
     <li><a href="#planos">Planos</a></li>
     <li><a href="#roi">Resultados</a></li>
   </ul>
-  <a href="https://wa.me/5591993779948?text=Oi!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Capta" class="nav-cta">Falar agora ↗</a>
+  <a href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer" class="nav-cta">Fazer diagnóstico ↗</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="badge">
     <span class="badge-dot"></span>
-    Capta — Inteligência Artificial Aplicada
+    Capta — Atendentes Virtuais e Automação
   </div>
-  <h1>A IA que transforma<br>o jeito que seu <em>negócio opera</em></h1>
-  <p class="hero-sub">Da automação de processos à tomada de decisão inteligente — a Capta implementa soluções com IA que fazem seu negócio crescer sem crescer o time.</p>
-  <p class="hero-pain">E se sua empresa pudesse operar mais rápido, errar menos e vender mais — sem contratar ninguém?</p>
+  <h1>Atendentes virtuais para<br><em>economizar tempo</em> e organizar clientes</h1>
+  <p class="hero-sub">A Capta implementa atendentes virtuais que conversam com seus clientes, coletam informações importantes e deixam tudo organizado para sua equipe vender mais.</p>
+  <p class="hero-pain">Seu cliente vê um atendimento normal. Por trás, sua empresa ganha dados, histórico, follow-up e menos trabalho manual.</p>
   <div class="hero-btns">
-    <a href="https://wa.me/5591993779948?text=Quero%20conhecer%20as%20solu%C3%A7%C3%B5es%20da%20Capta" class="btn-main">Quero uma demo grátis ↗</a>
+    <a href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer" class="btn-main">Fazer diagnóstico gratuito ↗</a>
     <a href="#solucoes" class="btn-ghost">Ver soluções</a>
   </div>
   <div class="tags">
-    <span class="tag">🧠 IA aplicada ao negócio</span>
-    <span class="tag">⚙️ Automação de processos</span>
-    <span class="tag">📊 Decisões baseadas em dados</span>
-    <span class="tag">⚡ Setup em até 5 dias</span>
+    <span class="tag">🤖 Atendentes virtuais</span>
+    <span class="tag">⚙️ Processos automáticos</span>
+    <span class="tag">📊 Clientes organizados</span>
+    <span class="tag">⚡ Diagnóstico em 5 min</span>
     <span class="tag">🔒 Sem fidelidade</span>
   </div>
 </section>
 
 <!-- PROOF BAR -->
 <div class="proof-bar">
-  <div class="proof-item"><strong>+6h</strong> economizadas por dia</div>
-  <div class="proof-item"><strong>5 dias</strong> para estar rodando</div>
-  <div class="proof-item"><strong>24/7</strong> operação automática</div>
-  <div class="proof-item"><strong>R$ 0</strong> custo no diagnóstico</div>
+  <div class="proof-item"><strong>5 min</strong> para responder o diagnóstico</div>
+  <div class="proof-item"><strong>72h</strong> para primeira entrega Starter</div>
+  <div class="proof-item"><strong>24/7</strong> atendimento virtual</div>
+  <div class="proof-item"><strong>R$ 0</strong> diagnóstico inicial</div>
 </div>
 
 <!-- PAIN -->
@@ -500,6 +562,41 @@ footer a{color:#9FE1CB;text-decoration:none}
   <div class="pain-bridge">
     A Capta não vende software. <em>Vende resultado.</em><br>
     <span style="font-size:13px;font-weight:400;color:#0F6E56;margin-top:4px;display:block">Identificamos onde a IA gera mais valor no seu negócio e implementamos — do zero ao funcionando.</span>
+  </div>
+</section>
+
+
+<!-- DIAGNOSTIC -->
+<section class="diagnostic-section" id="diagnostico">
+  <div class="diagnostic-wrap">
+    <div class="diagnostic-head">
+      <p class="section-label" style="text-align:left;margin-bottom:.75rem">Diagnóstico Capta</p>
+      <h2>Descubra onde seu negócio está perdendo tempo e oportunidades</h2>
+      <p>Responda um diagnóstico rápido de 5 minutos e receba uma análise simples sobre gargalos no atendimento, organização de clientes e processos que podem ser automatizados.</p>
+    </div>
+
+    <div class="diagnostic-grid">
+      <div class="diagnostic-card">
+        <span>💬</span>
+        <h3>Atendimento</h3>
+        <p>Entenda se sua equipe está perdendo tempo com perguntas repetitivas e respostas manuais no WhatsApp.</p>
+      </div>
+      <div class="diagnostic-card">
+        <span>🗂️</span>
+        <h3>Organização</h3>
+        <p>Veja se seus clientes, orçamentos e pedidos estão ficando soltos em conversas, planilhas ou anotações.</p>
+      </div>
+      <div class="diagnostic-card">
+        <span>📈</span>
+        <h3>Oportunidade</h3>
+        <p>Identifique onde existe chance de economizar tempo, recuperar clientes e vender mais com automação.</p>
+      </div>
+    </div>
+
+    <div class="diagnostic-actions">
+      <a href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer" class="btn-main">Fazer diagnóstico gratuito ↗</a>
+      <span class="diagnostic-note">Sem compromisso · Resposta rápida · Análise inicial gratuita</span>
+    </div>
   </div>
 </section>
 
@@ -558,7 +655,7 @@ footer a{color:#9FE1CB;text-decoration:none}
       <div class="step-num">1</div>
       <div class="step-body">
         <h4>Diagnóstico gratuito</h4>
-        <p>Entendemos como sua operação funciona hoje, onde você perde mais tempo e onde a IA pode gerar mais resultado.</p>
+        <p>Você responde algumas perguntas sobre atendimento, clientes, follow-up e processos. A partir disso, analisamos onde existe perda de tempo e oportunidade.</p>
         <span class="step-time">Dia 1 · 100% grátis</span>
       </div>
     </div>
@@ -619,7 +716,7 @@ footer a{color:#9FE1CB;text-decoration:none}
         <li><span class="dash">–</span> Dashboard e BI</li>
         <li><span class="dash">–</span> Integrações customizadas</li>
       </ul>
-      <a href="https://wa.me/5591993779948?text=Tenho%20interesse%20no%20plano%20Starter%20da%20Capta" class="cta-plan">Quero o Starter ↗</a>
+      <a href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer" class="cta-plan">Fazer diagnóstico ↗</a>
     </div>
 
     <!-- PRO -->
@@ -644,7 +741,7 @@ footer a{color:#9FE1CB;text-decoration:none}
         <li><span class="check">✓</span> Suporte prioritário 7 dias</li>
         <li><span class="dash">–</span> Soluções ilimitadas e sob medida</li>
       </ul>
-      <a href="https://wa.me/5591993779948?text=Tenho%20interesse%20no%20plano%20Pro%20da%20Capta" class="cta-plan primary">Quero o Pro ↗</a>
+      <a href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer" class="cta-plan primary">Fazer diagnóstico ↗</a>
     </div>
 
     <!-- PREMIUM -->
@@ -668,7 +765,7 @@ footer a{color:#9FE1CB;text-decoration:none}
         <li><span class="check">✓</span> Suporte dedicado 24h</li>
         <li><span class="check">✓</span> Reunião mensal de estratégia e resultados</li>
       </ul>
-      <a href="https://wa.me/5591993779948?text=Tenho%20interesse%20no%20plano%20Premium%20da%20Capta" class="cta-plan">Quero o Premium ↗</a>
+      <a href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer" class="cta-plan">Fazer diagnóstico ↗</a>
     </div>
 
   </div>
@@ -709,7 +806,7 @@ footer a{color:#9FE1CB;text-decoration:none}
   <h2 class="section-title" style="margin-bottom:.5rem">Respostas diretas</h2>
   <p style="text-align:center;font-size:14px;color:var(--muted);margin-bottom:3rem">Sem enrolação.</p>
   <div class="obj-grid">
-    <div class="obj-card">
+    <div class="obj-card"> 
       <div class="obj-q">Preciso entender de IA ou tecnologia?</div>
       <div class="obj-a">Não. A Capta cuida de tudo — do diagnóstico à implementação. Você só usa o resultado.</div>
     </div>
@@ -738,10 +835,10 @@ footer a{color:#9FE1CB;text-decoration:none}
 
 <!-- CTA FINAL -->
 <section class="cta-section">
-  <h2>Pronto para ter uma<br><em>empresa com IA</em>?</h2>
-  <p>Diagnóstico 100% gratuito. A gente mostra onde a IA gera mais resultado no seu negócio — e você decide se quer avançar.</p>
-  <a href="https://wa.me/5591993779948?text=Quero%20um%20diagn%C3%B3stico%20gratuito%20da%20Capta" class="btn-white">Quero meu diagnóstico grátis ↗</a>
-  <div class="cta-note">Sem fidelidade · Cancele quando quiser · Resposta em menos de 1h</div>
+  <h2>Quer saber o que pode ser<br><em>automatizado no seu negócio?</em></h2>
+  <p>Faça o Diagnóstico Capta e receba uma análise inicial dos pontos que podem ser melhorados no seu atendimento, organização e acompanhamento de clientes.</p>
+  <a href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer" class="btn-white">Começar diagnóstico ↗</a>
+  <div class="cta-note">Sem fidelidade · Cancele quando quiser · Análise inicial gratuita</div>
 </section>
 
 <!-- TRUST STRIP -->
@@ -754,7 +851,7 @@ footer a{color:#9FE1CB;text-decoration:none}
 </div>
 
 <footer>
-  <p style="margin-bottom:8px"><strong>CAPTA</strong> — Soluções com Inteligência Artificial</p>
+  <p style="margin-bottom:8px"><strong>CAPTA</strong> — Atendentes virtuais, automação e CRM</p>
   <p>📱 <a href="https://wa.me/5591993779948">(91) 99377-9948</a></p>
   <p style="margin-top:16px;font-size:11px;opacity:.4">© 2025 Capta. Todos os direitos reservados.</p>
 </footer>
