@@ -392,6 +392,46 @@ nav{
   font-size:12px;color:var(--green-dark);font-weight:600;
 }
 
+
+/* AUTOFLOW TEASER */
+.autoflow-teaser{
+  padding:5rem 2rem;background:#0E0F0E;color:white;
+  border-top:0.5px solid #252725;border-bottom:0.5px solid #252725;
+}
+.autoflow-wrap{
+  max-width:1040px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;
+}
+.autoflow-kicker{
+  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9FE1CB;margin-bottom:.8rem;
+}
+.autoflow-copy h2{
+  font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.12;letter-spacing:-.03em;margin-bottom:1rem;
+}
+.autoflow-copy p{font-size:14px;color:rgba(255,255,255,.68);line-height:1.7;margin-bottom:1.25rem}
+.autoflow-list{display:grid;gap:10px;margin:1.5rem 0}
+.autoflow-list div{
+  display:flex;gap:10px;align-items:flex-start;
+  font-size:13px;color:rgba(255,255,255,.72);
+}
+.autoflow-list span{color:#9FE1CB;font-weight:800}
+.autoflow-panel{
+  background:#141614;border:1px solid #2F352F;border-radius:20px;padding:1rem;
+  box-shadow:0 24px 80px rgba(0,0,0,.35);
+}
+.auto-top{display:flex;justify-content:space-between;align-items:center;padding:.65rem .75rem;border-bottom:1px solid #262B26;margin-bottom:.75rem}
+.auto-top strong{font-size:14px}
+.auto-pill{font-size:11px;color:#9FE1CB;background:rgba(159,225,203,.1);border:1px solid rgba(159,225,203,.22);padding:4px 9px;border-radius:999px}
+.auto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin-bottom:.75rem}
+.auto-card{background:#0E0F0E;border:1px solid #262B26;border-radius:12px;padding:.9rem}
+.auto-card small{display:block;color:rgba(255,255,255,.42);font-size:10px;margin-bottom:.25rem}
+.auto-card b{font-family:'DM Mono',monospace;font-size:18px;color:white}
+.auto-lead{display:flex;justify-content:space-between;align-items:center;background:#0E0F0E;border:1px solid #262B26;border-radius:12px;padding:.85rem;margin-top:.55rem}
+.auto-lead div{font-size:12px;color:rgba(255,255,255,.72)}
+.auto-lead strong{display:block;color:white;font-size:13px}
+.auto-status{font-size:10px;color:#9FE1CB;background:rgba(159,225,203,.1);padding:4px 8px;border-radius:999px}
+@media(max-width:800px){.autoflow-wrap{grid-template-columns:1fr}.autoflow-panel{order:-1}}
+
 /* ROI */
 .roi-section{
   padding:5rem 2rem;
@@ -489,6 +529,7 @@ footer a{color:#9FE1CB;text-decoration:none}
   <div class="nav-logo">CAPTA</div>
   <ul class="nav-links">
     <li><a href="#diagnostico">Diagnóstico</a></li>
+    <li><a href="autoflow.html">AutoFlow</a></li>
     <li><a href="#solucoes">Soluções</a></li>
     <li><a href="#como-funciona">Como funciona</a></li>
     <li><a href="#planos">Planos</a></li>
@@ -508,7 +549,7 @@ footer a{color:#9FE1CB;text-decoration:none}
   <p class="hero-pain">Seu cliente vê um atendimento normal. Por trás, sua empresa ganha dados, histórico, follow-up e menos trabalho manual.</p>
   <div class="hero-btns">
     <a href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer" class="btn-main">Fazer diagnóstico gratuito ↗</a>
-    <a href="#solucoes" class="btn-ghost">Ver soluções</a>
+    <a href="autoflow.html" class="btn-ghost">Ver AutoFlow</a>
   </div>
   <div class="tags">
     <span class="tag">🤖 Atendentes virtuais</span>
@@ -596,6 +637,35 @@ footer a{color:#9FE1CB;text-decoration:none}
     <div class="diagnostic-actions">
       <a href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer" class="btn-main">Fazer diagnóstico gratuito ↗</a>
       <span class="diagnostic-note">Sem compromisso · Resposta rápida · Análise inicial gratuita</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- AUTOFLOW TEASER -->
+<section class="autoflow-teaser" id="autoflow">
+  <div class="autoflow-wrap">
+    <div class="autoflow-copy">
+      <div class="autoflow-kicker">Capta AutoFlow</div>
+      <h2>Sistema para revendas não perderem interessados em veículos.</h2>
+      <p>O AutoFlow conecta atendimento, estoque, leads, propostas e follow-ups em um painel simples para lojas de seminovos e usados.</p>
+      <div class="autoflow-list">
+        <div><span>✓</span> Lead ligado ao veículo certo, com status e próxima ação.</div>
+        <div><span>✓</span> Estoque inteligente para o assistente responder com dados atualizados.</div>
+        <div><span>✓</span> Painel do proprietário com carros mais procurados e retornos pendentes.</div>
+      </div>
+      <a href="autoflow.html" class="btn-main">Conhecer o AutoFlow ↗</a>
+    </div>
+    <div class="autoflow-panel">
+      <div class="auto-top"><strong>SLZ Veículos · AutoFlow</strong><span class="auto-pill">Assistente online</span></div>
+      <div class="auto-grid">
+        <div class="auto-card"><small>Leads ativos</small><b>28</b></div>
+        <div class="auto-card"><small>Follow-ups hoje</small><b>9</b></div>
+        <div class="auto-card"><small>Veículos</small><b>34</b></div>
+        <div class="auto-card"><small>Potencial aberto</small><b>R$812k</b></div>
+      </div>
+      <div class="auto-lead"><div><strong>Rafael Costa</strong>Corolla XEi 2020 · simulação enviada</div><span class="auto-status">retornar hoje</span></div>
+      <div class="auto-lead"><div><strong>Mariana Lopes</strong>Compass 2021 · aguardando retorno</div><span class="auto-status">enviar similares</span></div>
     </div>
   </div>
 </section>

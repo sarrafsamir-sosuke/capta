@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capta AutoFlow — Sistema para revendas</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#1D9E75;--green-dark:#0F6E56;--green-bg:#E1F5EE;--green-text:#9FE1CB;
+  --ink:#0E0F0E;--ink2:#171917;--muted:#6B7280;--muted2:#9CA3AF;
+  --border:#E5E7EB;--bg:#F8FAFC;--white:#fff;--radius:16px;--pill:999px;
+}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{text-decoration:none}
+nav{position:sticky;top:0;z-index:50;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-size:14px;font-weight:800;letter-spacing:.08em;color:var(--ink)}
+.nav-links{display:flex;gap:1.6rem;list-style:none}
+.nav-links a{font-size:13px;color:var(--muted)}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--green-dark);color:var(--green-bg);font-size:13px;font-weight:700;padding:9px 18px;border-radius:var(--pill)}
+.hero{position:relative;overflow:hidden;background:var(--ink);color:white;padding:5rem 2rem 4rem}
+.hero::before{content:'';position:absolute;inset:-20%;background:radial-gradient(circle at 25% 0%,rgba(29,158,117,.45),transparent 35%),radial-gradient(circle at 80% 20%,rgba(159,225,203,.15),transparent 30%);pointer-events:none}
+.hero-wrap{position:relative;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+.badge{display:inline-flex;gap:8px;align-items:center;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--green-text);background:rgba(159,225,203,.1);border:1px solid rgba(159,225,203,.18);padding:6px 13px;border-radius:var(--pill);margin-bottom:1.35rem}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green-text)}
+.hero h1{font-size:clamp(2.2rem,5vw,4.2rem);line-height:1.05;letter-spacing:-.045em;max-width:780px;margin-bottom:1.2rem}
+.hero h1 em{font-style:normal;color:var(--green-text)}
+.hero p{font-size:16px;color:rgba(255,255,255,.72);max-width:620px;margin-bottom:1rem}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:2rem}
+.btn-main{display:inline-flex;align-items:center;justify-content:center;background:var(--green-text);color:#083A2E;border-radius:var(--pill);font-weight:800;font-size:14px;padding:13px 22px}
+.btn-dark{display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:white;border:1px solid rgba(255,255,255,.14);border-radius:var(--pill);font-weight:700;font-size:14px;padding:13px 22px}
+.mock{background:#111411;border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:1rem;box-shadow:0 30px 90px rgba(0,0,0,.45)}
+.mock-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);padding:.75rem .85rem 1rem;margin-bottom:.85rem}
+.mock-top strong{font-size:14px}
+.mock-top span{font-size:11px;color:var(--green-text);background:rgba(159,225,203,.1);padding:4px 10px;border-radius:var(--pill)}
+.mock-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;margin-bottom:.7rem}
+.mock-card{background:#0B0D0B;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:1rem}
+.mock-card small{display:block;color:rgba(255,255,255,.42);font-size:10px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem}
+.mock-card b{font-family:'DM Mono',monospace;font-size:22px;color:white}
+.mock-list{display:grid;gap:.6rem}
+.mock-lead{display:flex;justify-content:space-between;align-items:center;background:#0B0D0B;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:1rem}
+.mock-lead strong{font-size:13px;color:white;display:block}
+.mock-lead span{font-size:11px;color:rgba(255,255,255,.5)}
+.status{font-size:10px!important;color:var(--green-text)!important;background:rgba(159,225,203,.1);padding:5px 9px;border-radius:var(--pill)}
+.strip{background:white;border-bottom:1px solid var(--border);padding:1.2rem 2rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.strip div{font-size:13px;color:var(--muted)}
+.strip strong{color:var(--green-dark)}
+section{padding:5rem 2rem}
+.container{max-width:1120px;margin:0 auto}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green-dark);margin-bottom:.85rem;text-align:center}
+.title{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.12;letter-spacing:-.03em;text-align:center;margin-bottom:.8rem}
+.subtitle{text-align:center;font-size:15px;color:var(--muted);max-width:680px;margin:0 auto 3rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:0 10px 30px rgba(15,23,42,.04)}
+.card-icon{width:42px;height:42px;border-radius:13px;background:var(--green-bg);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1rem}
+.card h3{font-size:16px;margin-bottom:.45rem}
+.card p{font-size:13px;color:var(--muted);line-height:1.65}
+.dark-section{background:var(--ink);color:white}
+.dark-section .label{color:var(--green-text)}
+.dark-section .title{color:white}
+.dark-section .subtitle{color:rgba(255,255,255,.62)}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.flow-step{background:#141714;border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:1.15rem}
+.flow-num{font-family:'DM Mono',monospace;color:var(--green-text);font-size:18px;margin-bottom:.5rem}
+.flow-step h4{font-size:14px;margin-bottom:.35rem}
+.flow-step p{font-size:12px;color:rgba(255,255,255,.55);line-height:1.55}
+.product-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:20px;align-items:start}
+.panel{background:white;border:1px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:0 20px 60px rgba(15,23,42,.07)}
+.panel-head{height:58px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1rem}
+.panel-head strong{font-size:14px}
+.panel-body{display:grid;grid-template-columns:190px 1fr;min-height:430px}
+.sidebar{background:#F1F5F9;border-right:1px solid var(--border);padding:.85rem}
+.side-item{display:flex;gap:8px;align-items:center;border-radius:12px;padding:.75rem;font-size:12px;font-weight:700;color:#475569}
+.side-item.active{background:#0E0F0E;color:white}
+.dash{padding:1rem}
+.dash-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;margin-bottom:.85rem}
+.dash-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:.9rem}
+.dash-card small{display:block;color:#64748B;font-size:10px;margin-bottom:.25rem}
+.dash-card b{font-family:'DM Mono',monospace;font-size:20px}
+.lead-row{display:flex;justify-content:space-between;align-items:center;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:.85rem;margin-top:.6rem}
+.lead-row strong{font-size:12px;display:block}
+.lead-row span{font-size:11px;color:#64748B}
+.lead-pill{font-size:10px!important;color:#0F6E56!important;background:#DCFCE7;padding:4px 8px;border-radius:999px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.plan{background:white;border:1px solid var(--border);border-radius:18px;padding:1.5rem;display:flex;flex-direction:column}
+.plan.featured{border:2px solid var(--green);box-shadow:0 0 0 4px #D1FAE5}
+.plan.dark{background:var(--ink);color:white;border-color:#333}
+.plan small{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.35rem}
+.plan.dark small{color:rgba(255,255,255,.4)}
+.plan h3{font-size:19px;margin-bottom:.4rem}
+.plan p{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:1rem}
+.plan.dark p{color:rgba(255,255,255,.55)}
+.price{background:#F8FAFC;border:1px solid var(--border);border-radius:12px;padding:1rem;margin-bottom:1rem}
+.plan.dark .price{background:#151715;border-color:#333}
+.price b{font-family:'DM Mono',monospace;font-size:24px}
+.price span{font-size:12px;color:var(--muted);display:block;margin-top:.2rem}
+.plan ul{list-style:none;display:grid;gap:8px;margin:0 0 1.25rem}
+.plan li{font-size:13px;color:var(--muted);display:flex;gap:7px}
+.plan.dark li{color:rgba(255,255,255,.65)}
+.plan li::before{content:'✓';color:var(--green);font-weight:800}
+.cta-section{background:linear-gradient(135deg,#0A3D2B,#0F6E56 60%,#1D9E75);text-align:center;color:white}
+.cta-section h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.04em;line-height:1.1;margin-bottom:1rem}
+.cta-section p{font-size:15px;color:rgba(255,255,255,.72);max-width:580px;margin:0 auto 2rem}
+footer{background:#080A08;color:rgba(255,255,255,.55);text-align:center;padding:2rem;font-size:13px}
+footer strong{color:white}
+footer a{color:var(--green-text)}
+@media(max-width:900px){
+  .hero-wrap,.product-grid{grid-template-columns:1fr}
+  .grid-3,.plans,.flow{grid-template-columns:1fr}
+  .panel-body{grid-template-columns:1fr}
+  .sidebar{display:none}
+  nav{padding:0 1.25rem}.nav-links{display:none}
+  section,.hero{padding:3.5rem 1.25rem}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">CAPTA</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="#solucao">Solução</a></li>
+    <li><a href="#produto">Produto</a></li>
+    <li><a href="#planos">Planos</a></li>
+  </ul>
+  <a class="nav-cta" href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer">Pedir prévia ↗</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-wrap">
+    <div>
+      <div class="badge"><span class="dot"></span> Capta AutoFlow para revendas</div>
+      <h1>Pare de perder interessados em veículos no <em>WhatsApp</em>.</h1>
+      <p>O AutoFlow organiza leads, estoque, propostas, vendedores e retornos em um painel simples para lojas de seminovos e usados venderem com mais controle.</p>
+      <p>O assistente atende clientes com base no estoque atualizado, coleta dados importantes e entrega oportunidades prontas para sua equipe.</p>
+      <div class="hero-actions">
+        <a href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer" class="btn-main">Quero uma prévia gratuita ↗</a>
+        <a href="#produto" class="btn-dark">Ver como funciona</a>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock-top"><strong>SLZ Veículos · AutoFlow</strong><span>Assistente online</span></div>
+      <div class="mock-grid">
+        <div class="mock-card"><small>Leads ativos</small><b>28</b></div>
+        <div class="mock-card"><small>Follow-ups hoje</small><b>9</b></div>
+        <div class="mock-card"><small>Veículos</small><b>34</b></div>
+        <div class="mock-card"><small>Potencial aberto</small><b>R$812k</b></div>
+      </div>
+      <div class="mock-list">
+        <div class="mock-lead"><div><strong>Rafael Costa</strong><span>Corolla XEi 2020 · simulação enviada</span></div><span class="status">retornar hoje</span></div>
+        <div class="mock-lead"><div><strong>Mariana Lopes</strong><span>Compass 2021 · aguardando retorno</span></div><span class="status">enviar similares</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div><strong>CRM</strong> de interessados</div>
+  <div><strong>Estoque</strong> inteligente</div>
+  <div><strong>Assistente</strong> 24/7</div>
+  <div><strong>Follow-up</strong> comercial</div>
+  <div><strong>Painel</strong> do dono</div>
+</div>
+
+<section id="solucao">
+  <div class="container">
+    <div class="label">Problema real</div>
+    <h2 class="title">Cliente pergunta, pede simulação, some… e ninguém acompanha.</h2>
+    <p class="subtitle">Em revendas, uma única oportunidade perdida pode representar muito dinheiro. O AutoFlow foi pensado para impedir que leads, propostas e carros fiquem soltos em conversas.</p>
+    <div class="grid-3">
+      <div class="card"><div class="card-icon">💬</div><h3>Lead perdido no WhatsApp</h3><p>O cliente chama sobre um carro, recebe algumas respostas e desaparece sem entrar em um controle claro.</p></div>
+      <div class="card"><div class="card-icon">🚗</div><h3>Estoque separado do atendimento</h3><p>O vendedor precisa procurar preço, fotos, ano, km e detalhes toda hora antes de responder.</p></div>
+      <div class="card"><div class="card-icon">⏰</div><h3>Follow-up esquecido</h3><p>Quem pediu simulação ou visita precisa receber retorno no momento certo para não esfriar.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section">
+  <div class="container">
+    <div class="label">Como funciona</div>
+    <h2 class="title">Do primeiro contato até o fechamento.</h2>
+    <p class="subtitle">O fluxo foi criado para ser simples para o vendedor e claro para o proprietário.</p>
+    <div class="flow">
+      <div class="flow-step"><div class="flow-num">01</div><h4>Cliente chama</h4><p>WhatsApp, Instagram, anúncios, OLX ou cadastro manual.</p></div>
+      <div class="flow-step"><div class="flow-num">02</div><h4>Assistente qualifica</h4><p>Coleta nome, veículo, entrada, troca e intenção.</p></div>
+      <div class="flow-step"><div class="flow-num">03</div><h4>Estoque responde</h4><p>O assistente usa os carros cadastrados para informar disponibilidade.</p></div>
+      <div class="flow-step"><div class="flow-num">04</div><h4>CRM organiza</h4><p>Cada lead entra com status, vendedor e próxima ação.</p></div>
+      <div class="flow-step"><div class="flow-num">05</div><h4>Dono acompanha</h4><p>Leads quentes, veículos procurados e follow-ups do dia.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="produto">
+  <div class="container">
+    <div class="label">Produto</div>
+    <h2 class="title">A tela que o dono da revenda usa para controlar tudo.</h2>
+    <p class="subtitle">A loja vê o AutoFlow com seu próprio nome, seus carros, seus vendedores e suas oportunidades. A Capta aparece apenas como implementação.</p>
+    <div class="product-grid">
+      <div class="grid-3" style="grid-template-columns:1fr;gap:12px">
+        <div class="card"><div class="card-icon">🤖</div><h3>Assistente de atendimento</h3><p>Responde dúvidas iniciais, coleta informações e salva tudo no CRM sem parecer um robô genérico.</p></div>
+        <div class="card"><div class="card-icon">📋</div><h3>CRM comercial</h3><p>Leads por veículo, status, responsável, proposta e próxima ação.</p></div>
+        <div class="card"><div class="card-icon">🚘</div><h3>Estoque inteligente</h3><p>Carros com preço, fotos, km, condição, status e quantidade de interessados.</p></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><strong>SLZ Veículos · AutoFlow</strong><span style="font-size:11px;color:#0F6E56;font-weight:800">online</span></div>
+        <div class="panel-body">
+          <div class="sidebar">
+            <div class="side-item active">Visão geral</div>
+            <div class="side-item">Leads</div>
+            <div class="side-item">Estoque</div>
+            <div class="side-item">Assistente</div>
+            <div class="side-item">Follow-ups</div>
+          </div>
+          <div class="dash">
+            <div class="dash-metrics">
+              <div class="dash-card"><small>Leads ativos</small><b>28</b></div>
+              <div class="dash-card"><small>Retornos hoje</small><b>9</b></div>
+              <div class="dash-card"><small>Carros</small><b>34</b></div>
+              <div class="dash-card"><small>Potencial</small><b>R$812k</b></div>
+            </div>
+            <div class="lead-row"><div><strong>Rafael Costa</strong><span>Corolla XEi 2020 · simulação enviada</span></div><span class="lead-pill">quente</span></div>
+            <div class="lead-row"><div><strong>Patrícia Nunes</strong><span>Corolla XEi 2020 · visita agendada</span></div><span class="lead-pill">confirmar</span></div>
+            <div class="lead-row"><div><strong>João Victor</strong><span>Civic EXL 2018 · sem resposta</span></div><span class="lead-pill">reativar</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="planos">
+  <div class="container">
+    <div class="label">Planos</div>
+    <h2 class="title">Escolha a versão certa para sua revenda.</h2>
+    <p class="subtitle">Comece simples e evolua conforme a operação precisar.</p>
+    <div class="plans">
+      <div class="plan">
+        <small>AutoFlow Start</small>
+        <h3>CRM + Follow-up</h3>
+        <p>Para organizar interessados e não deixar retorno passar.</p>
+        <div class="price"><b>R$ 800</b><span>setup + R$ 300/mês</span></div>
+        <ul>
+          <li>CRM de leads</li>
+          <li>Pipeline comercial</li>
+          <li>Follow-ups do dia</li>
+          <li>Mensagens prontas</li>
+          <li>Painel básico</li>
+        </ul>
+        <a class="btn-main" href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer">Pedir prévia</a>
+      </div>
+      <div class="plan featured">
+        <small>AutoFlow Estoque</small>
+        <h3>CRM + Estoque inteligente</h3>
+        <p>Para conectar atendimento, veículos e oportunidades.</p>
+        <div class="price"><b>R$ 2.800</b><span>setup + R$ 500/mês</span></div>
+        <ul>
+          <li>Tudo do Start</li>
+          <li>Cadastro de veículos</li>
+          <li>IA consultando estoque</li>
+          <li>Leads por carro</li>
+          <li>Carros similares</li>
+          <li>Painel do proprietário</li>
+        </ul>
+        <a class="btn-main" href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer">Pedir prévia</a>
+      </div>
+      <div class="plan dark">
+        <small>AutoFlow Scale</small>
+        <h3>Operação completa</h3>
+        <p>Para loja com mais volume, vendedores e canais de entrada.</p>
+        <div class="price"><b>R$ 4.500</b><span>setup + R$ 800/mês</span></div>
+        <ul>
+          <li>Tudo do Estoque</li>
+          <li>Múltiplos vendedores</li>
+          <li>Relatórios avançados</li>
+          <li>Campanhas de reativação</li>
+          <li>Integrações e canais</li>
+          <li>Acompanhamento mensal</li>
+        </ul>
+        <a class="btn-main" href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer">Pedir prévia</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Quer ver o AutoFlow aplicado na sua loja?</h2>
+    <p>Solicite uma prévia gratuita com o nome da sua revenda, exemplos de leads, estoque e oportunidades. Sem compromisso.</p>
+    <a class="btn-main" href="https://forms.gle/7vaoeySeYYx3wCoW8" target="_blank" rel="noopener noreferrer">Quero uma prévia gratuita ↗</a>
+  </div>
+</section>
+
+<footer>
+  <p><strong>CAPTA</strong> — AutoFlow para revendas de veículos</p>
+  <p style="margin-top:8px">📱 <a href="https://wa.me/5591993779948">(91) 99377-9948</a></p>
+</footer>
+</body>
+</html>
