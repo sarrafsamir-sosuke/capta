@@ -1,6 +1,10 @@
 # dependencies
 /node_modules
 
+# CSS gerado — a Vercel compila no build (ver buildCommand em vercel.json).
+# Edite css/input.css, nunca este arquivo.
+css/style.css
+
 # misc
 .DS_Store
 *.pem

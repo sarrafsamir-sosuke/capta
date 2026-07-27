@@ -2,10 +2,10 @@
   "name": "capta",
   "version": "1.0.0",
   "private": true,
-  "description": "Site da Capta em HTML, CSS e JS. O Tailwind é a única dependência e serve só para gerar css/style.css a partir de css/tailwind.css.",
+  "description": "Site da Capta em HTML, CSS e JS. O Tailwind é a única dependência e serve só para gerar css/style.css a partir de css/input.css.",
   "scripts": {
-    "build:css": "tailwindcss -i ./css/tailwind.css -o ./css/style.css --minify",
-    "watch:css": "tailwindcss -i ./css/tailwind.css -o ./css/style.css --watch"
+    "build:css": "tailwindcss -i ./css/input.css -o ./css/style.css --minify",
+    "watch:css": "tailwindcss -i ./css/input.css -o ./css/style.css --watch"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",

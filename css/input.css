@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 /*
-  ARQUIVO-FONTE. Não edite css/style.css na mão — ele é gerado.
-  Para regerar depois de mexer aqui ou no HTML:  npm run build:css
+  ARQUIVO-FONTE. Edite aqui, nunca css/style.css — aquele é gerado
+  e nem está no repositório (a Vercel o compila a cada deploy).
+  Para regerar localmente:  npm run build:css
 
   Dark mode é o único modo. As variáveis existem para manter um ponto
   único de verdade — nunca hardcode de hex no HTML.
