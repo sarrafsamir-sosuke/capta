@@ -1,13 +1,9 @@
-import type { Config } from "tailwindcss"
-import tailwindcssAnimate from "tailwindcss-animate"
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   darkMode: "class",
-  content: [
-    "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./lib/**/*.{ts,tsx}",
-  ],
+  // Varre o HTML e o JS: as classes montadas dentro do js/ precisam
+  // aparecer como string inteira para o Tailwind enxergar.
+  content: ["./*.html", "./js/**/*.js"],
   theme: {
     extend: {
       colors: {
@@ -23,7 +19,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-sora)", "system-ui", "sans-serif"],
+        sans: ["Sora", "system-ui", "sans-serif"],
       },
       maxWidth: {
         content: "72rem",
@@ -33,13 +29,23 @@ const config: Config = {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.35" },
         },
+        // Seta do hero — era um loop do Framer Motion.
+        bob: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(6px)" },
+        },
+        // Pontinhos do "digitando…" no chat.
+        "typing-dot": {
+          "0%, 100%": { opacity: "0.35", transform: "translateY(0)" },
+          "50%": { opacity: "1", transform: "translateY(-2px)" },
+        },
       },
       animation: {
         "pulse-dot": "pulse-dot 2s ease-in-out infinite",
+        bob: "bob 2s ease-in-out infinite",
+        "typing-dot": "typing-dot 0.9s ease-in-out infinite",
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [],
 }
-
-export default config
