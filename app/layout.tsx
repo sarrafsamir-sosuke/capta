@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Sora } from "next/font/google"
 import { ThemeProvider } from "@/components/shared/ThemeProvider"
+import { LenisProvider } from "@/components/shared/LenisProvider"
 import "./globals.css"
 
 const sora = Sora({
@@ -31,7 +32,7 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
+          <LenisProvider>{children}</LenisProvider>
         </ThemeProvider>
       </body>
     </html>
