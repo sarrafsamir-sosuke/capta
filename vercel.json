@@ -1,8 +1,0 @@
-{
-  "framework": null,
-  "installCommand": "npm install",
-  "buildCommand": "npx tailwindcss -i ./css/input.css -o ./css/style.css --minify",
-  "outputDirectory": ".",
-  "cleanUrls": true,
-  "trailingSlash": false
-}
