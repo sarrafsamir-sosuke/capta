@@ -1,28 +1,116 @@
 "use client"
 
+import { useEffect, useRef, useState } from "react"
 import { IconBrandWhatsapp, IconArrowDown } from "@tabler/icons-react"
 import { HERO, linkWhatsApp } from "@/lib/constants"
+import { gsap, ScrollTrigger, SplitText } from "@/lib/gsap"
 
-// Estático no Prompt 4. Já é "use client" porque o Prompt 6 adiciona GSAP aqui.
 export function Hero() {
+  const eyebrowRef = useRef<HTMLParagraphElement>(null)
+  const headlineRef = useRef<HTMLHeadingElement>(null)
+  const subheadRef = useRef<HTMLParagraphElement>(null)
+  const ctasRef = useRef<HTMLDivElement>(null)
+
+  // O SplitText reescreve o DOM da headline. Só rodamos depois de montado no
+  // cliente, nunca durante a hidratação.
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
+  useEffect(() => {
+    if (!mounted) return
+
+    const headline = headlineRef.current
+    const eyebrow = eyebrowRef.current
+    const subhead = subheadRef.current
+    const ctas = ctasRef.current
+    if (!headline || !eyebrow || !subhead || !ctas) return
+
+    const split = new SplitText(headline, { type: "chars" })
+
+    // gsap.context recolhe todos os tweens e ScrollTriggers criados aqui dentro;
+    // ctx.revert() no cleanup limpa tudo de uma vez.
+    const ctx = gsap.context(() => {
+      gsap.from(split.chars, {
+        opacity: 0,
+        y: 30,
+        stagger: 0.025,
+        duration: 0.7,
+        ease: "power3.out",
+        delay: 0.2,
+      })
+
+      gsap.from(eyebrow, {
+        opacity: 0,
+        y: 10,
+        duration: 0.5,
+        ease: "power2.out",
+      })
+
+      gsap.from(subhead, {
+        opacity: 0,
+        y: 16,
+        duration: 0.5,
+        ease: "power2.out",
+        delay: 0.6,
+      })
+
+      gsap.from(ctas, {
+        opacity: 0,
+        y: 16,
+        duration: 0.5,
+        ease: "power2.out",
+        delay: 0.9,
+      })
+
+      // Headline sobe e some conforme o scroll. scrub: 2 (nunca true) para o
+      // movimento acompanhar o scroll com leve atraso cinematográfico.
+      ScrollTrigger.create({
+        trigger: headline,
+        start: "top top",
+        end: "bottom top",
+        scrub: 2,
+        onUpdate: (self) => {
+          gsap.set(headline, {
+            opacity: 1 - self.progress * 1.5,
+            y: self.progress * -40,
+          })
+        },
+      })
+    })
+
+    return () => {
+      ctx.revert()
+      split.revert()
+    }
+  }, [mounted])
+
   return (
     <section
       id="hero"
       className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-6 pt-24 pb-16"
     >
-      <p className="mb-6 text-xs font-medium uppercase tracking-widest text-zinc-500">
+      <p
+        ref={eyebrowRef}
+        className="mb-6 text-xs font-medium uppercase tracking-widest text-zinc-500"
+      >
         {HERO.eyebrow}
       </p>
 
-      <h1 className="mb-6 max-w-3xl text-5xl font-bold leading-[1.1] tracking-tight text-zinc-100 md:text-7xl">
+      <h1
+        ref={headlineRef}
+        className="mb-6 max-w-3xl text-5xl font-bold leading-[1.1] tracking-tight text-zinc-100 md:text-7xl"
+      >
         {HERO.headline}
       </h1>
 
-      <p className="mb-10 max-w-xl text-base leading-relaxed text-zinc-400 md:text-lg">
+      <p
+        ref={subheadRef}
+        className="mb-10 max-w-xl text-base leading-relaxed text-zinc-400 md:text-lg"
+      >
         {HERO.subheadline}
       </p>
 
-      <div className="flex flex-col gap-3 sm:flex-row">
+      <div ref={ctasRef} className="flex flex-col gap-3 sm:flex-row">
         <a
           href={linkWhatsApp(HERO.ctaPrimario.texto)}
           target="_blank"
