@@ -94,6 +94,60 @@ export const PROJETOS = {
   ],
 } as const
 
+/**
+ * Seção Automação (Prompt 8). Copy de docs/copy-final.md §3, reescrita sem
+ * travessão (subtítulo e resultado 2 usavam "—"). Os títulos curtos dos blocos
+ * de resultado não existem no copy-final; foram criados para o layout ícone +
+ * título + texto pedido no prompt.
+ */
+export const AUTOMACOES = {
+  eyebrow: "AUTOMAÇÃO",
+  titulo: "Seu WhatsApp respondendo enquanto você não pode",
+  subtitulo:
+    "Não é um robô com respostas travadas. É um atendimento montado para o seu negócio, que responde, agenda e avisa você quando é hora de entrar na conversa.",
+  resultados: [
+    {
+      titulo: "Responde na hora, a qualquer hora",
+      texto:
+        "Cliente manda mensagem às 23h. Em segundos recebe resposta com as informações que precisava. De manhã, você já tem um contato qualificado esperando.",
+    },
+    {
+      titulo: "Perguntas repetidas, respondidas sozinhas",
+      texto:
+        "Nenhuma pergunta repetitiva toma mais o seu tempo. Horários, preços, disponibilidade: tudo respondido automaticamente, com a sua linguagem.",
+    },
+    {
+      titulo: "Você entra só na hora certa",
+      texto:
+        "Você só é acionado quando o cliente já está pronto para decidir. O filtro acontece antes de chegar em você.",
+    },
+  ],
+  nota: "Automação 100% funcional com testes realizados. No ar em até 7 dias.",
+  // Demonstração do chat no phone frame. Roda em loop no cliente (Prompt 8).
+  chat: {
+    contato: "Seu negócio",
+    status: "online",
+    mensagens: [
+      { tipo: "cliente", texto: "Oi, quanto custa?" },
+      {
+        tipo: "bot",
+        texto:
+          "Boa noite! Fico feliz em ajudar. Me conta um pouco sobre o seu negócio?",
+      },
+      { tipo: "cliente", texto: "Tenho uma academia aqui em São Luís" },
+      {
+        tipo: "bot",
+        texto: "Perfeito. Qual o melhor horário para a gente conversar?",
+      },
+      { tipo: "cliente", texto: "Amanhã de manhã" },
+      {
+        tipo: "bot",
+        texto: "Marcado. Você recebe uma confirmação em instantes.",
+      },
+    ],
+  },
+} as const
+
 /** Seção Resultados / trilha (Prompt 5). Copy de docs/copy-final.md §4. */
 export const RESULTADOS = {
   eyebrow: "RESULTADOS",
