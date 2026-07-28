@@ -12,9 +12,9 @@ const sora = Sora({
 })
 
 export const metadata: Metadata = {
-  title: "Capta — Sites e atendimento automático em São Luís",
+  title: "Capta · Sites e atendimento automático em São Luís",
   description:
-    "A Capta constrói a presença digital de micro e pequenas empresas em São Luís — site que aparece no Google e atendimento automático que funciona enquanto você trabalha.",
+    "A Capta constrói a presença digital de micro e pequenas empresas em São Luís, com um site que aparece no Google e um atendimento automático que funciona enquanto você trabalha.",
 }
 
 export default function RootLayout({

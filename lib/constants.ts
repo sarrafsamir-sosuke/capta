@@ -28,10 +28,11 @@ export const NAV_LINKS = [
 /** Textos da seção Hero (Prompt 4). Copy de docs/copy-final.md. */
 export const HERO = {
   eyebrow: "Para pequenos negócios em São Luís que querem crescer de verdade",
-  // Uma frase só, com espaço — no Prompt 6 o SplitText quebra por caractere.
+  // Uma frase só; o SplitText divide em palavras e caracteres, para animar sem
+  // quebrar palavra no meio da linha.
   headline: "Mais clientes entrando. Nenhum ficando sem resposta.",
   subheadline:
-    "A Capta constrói a presença digital de micro e pequenas empresas em São Luís — site que aparece no Google e atendimento automático que funciona enquanto você trabalha.",
+    "A Capta constrói a presença digital de micro e pequenas empresas em São Luís, com um site que aparece no Google e um atendimento automático que funciona enquanto você trabalha.",
   ctaPrimario: {
     label: "Quero entender o que preciso",
     texto:
@@ -73,17 +74,17 @@ export const PROJETOS = {
   eyebrow: "PROJETOS",
   titulo: "O que um site feito para converter faz diferente",
   subtitulo:
-    "Não é questão de ser bonito. É questão de fazer o visitante entrar em contato. Cada detalhe do site — o texto, a velocidade, a estrutura — existe para isso.",
+    "Não é questão de ser bonito. É questão de fazer o visitante entrar em contato. Cada detalhe do site existe para isso: o texto, a velocidade, a estrutura.",
   cards: [
     {
       titulo: "Escrito para o seu cliente",
       texto:
-        "O texto não é genérico. É escrito para quem você quer atrair — com as palavras que ele usa, as dúvidas que ele tem e o motivo que o faz escolher um negócio em vez de outro.",
+        "O texto não é genérico. É escrito para quem você quer atrair, com as palavras que ele usa, as dúvidas que ele tem e o motivo que o faz escolher um negócio em vez de outro.",
     },
     {
       titulo: "Construído para o Google e para IA",
       texto:
-        "Seu site aparece quando alguém pesquisa o seu serviço — no Google, no ChatGPT, no Maps. Otimizado desde o primeiro dia, entregue em até 3 dias.",
+        "Seu site aparece quando alguém pesquisa o seu serviço no Google, no ChatGPT ou no Maps. Otimizado desde o primeiro dia, entregue em até 3 dias.",
     },
     {
       titulo: "Feito para virar contato",
@@ -91,8 +92,6 @@ export const PROJETOS = {
         "Cada botão, cada seção, cada frase tem uma função. O visitante chega, entende o que você faz, e entra em contato. É isso que separa site que converte de site que existe.",
     },
   ],
-  nota:
-    "Os primeiros projetos entram aqui assim que saem do ar. Se quiser ser um dos primeiros negócios de São Luís com essa estrutura, o momento é agora.",
 } as const
 
 /** Seção Resultados / trilha (Prompt 5). Copy de docs/copy-final.md §4. */
@@ -136,12 +135,6 @@ export const DIAGNOSTICO = {
     texto: "Oi! Vim pelo site e quero conversar sobre o meu negócio.",
   },
 } as const
-
-/**
- * Instagram da Capta (Footer).
- * TODO: o @ real não está em nenhum doc do projeto — trocar quando confirmado.
- */
-export const INSTAGRAM_URL = "https://www.instagram.com/"
 
 /** Footer (Prompt 5). */
 export const FOOTER = {

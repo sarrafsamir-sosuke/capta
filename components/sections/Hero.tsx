@@ -25,7 +25,9 @@ export function Hero() {
     const ctas = ctasRef.current
     if (!headline || !eyebrow || !subhead || !ctas) return
 
-    const split = new SplitText(headline, { type: "chars" })
+    // words,chars: cada palavra vira um bloco que não quebra no meio; anima-se
+    // os caracteres dentro dela.
+    const split = new SplitText(headline, { type: "words,chars" })
 
     // gsap.context recolhe todos os tweens e ScrollTriggers criados aqui dentro;
     // ctx.revert() no cleanup limpa tudo de uma vez.

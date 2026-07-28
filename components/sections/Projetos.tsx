@@ -57,10 +57,6 @@ export function Projetos() {
           </div>
         ))}
       </div>
-
-      <p className="mt-8 max-w-2xl text-sm leading-relaxed text-zinc-500">
-        {PROJETOS.nota}
-      </p>
     </section>
   )
 }
