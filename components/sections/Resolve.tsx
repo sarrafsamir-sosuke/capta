@@ -1,8 +1,40 @@
-// Server Component — placeholder do Prompt 3. Conteúdo real entra no Prompt 5.
+import {
+  IconWorldWww,
+  IconMessageCircle,
+  IconCalendarCheck,
+} from "@tabler/icons-react"
+import { RESOLVE } from "@/lib/constants"
+
+// Server Component (Prompt 5) — sem animação. O Framer Motion entra no Prompt 7.
+// Ícones ficam no componente (presentação); a copy vem de constants.
+const ICONES = [IconWorldWww, IconMessageCircle, IconCalendarCheck]
+
 export function Resolve() {
   return (
-    <section id="resolve" className="py-24">
-      <p className="text-zinc-500">resolve</p>
+    <section id="resolve" className="mx-auto max-w-6xl px-6 py-24">
+      <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
+        {RESOLVE.eyebrow}
+      </p>
+      <h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight text-zinc-100 md:text-4xl">
+        {RESOLVE.titulo}
+      </h2>
+
+      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+        {RESOLVE.colunas.map((coluna, i) => {
+          const Icone = ICONES[i]
+          return (
+            <div key={coluna.titulo}>
+              <Icone size={24} stroke={1.5} className="text-zinc-300" />
+              <h3 className="mt-4 text-base font-medium text-zinc-100">
+                {coluna.titulo}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                {coluna.texto}
+              </p>
+            </div>
+          )
+        })}
+      </div>
     </section>
   )
 }

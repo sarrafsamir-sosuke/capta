@@ -1,4 +1,5 @@
 import { Nav } from "@/components/shared/Nav"
+import { Footer } from "@/components/shared/Footer"
 import { Hero } from "@/components/sections/Hero"
 import { Resolve } from "@/components/sections/Resolve"
 import { Projetos } from "@/components/sections/Projetos"
@@ -18,6 +19,7 @@ export default function Home() {
         <Resultados />
         <Diagnostico />
       </main>
+      <Footer />
     </>
   )
 }
