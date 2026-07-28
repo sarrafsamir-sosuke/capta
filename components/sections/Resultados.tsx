@@ -1,7 +1,9 @@
 import { Fragment } from "react"
 import { RESULTADOS } from "@/lib/constants"
+import { StaggerGroup, StaggerItem } from "@/components/ui/StaggerGroup"
 
-// Server Component (Prompt 5). Três marcos lado a lado, ligados por uma linha.
+// Server Component. Três marcos lado a lado (entram escalonados, Prompt 7),
+// ligados por uma linha.
 export function Resultados() {
   return (
     <section id="resultados" className="mx-auto max-w-6xl px-6 py-24">
@@ -15,10 +17,10 @@ export function Resultados() {
         {RESULTADOS.subtitulo}
       </p>
 
-      <div className="mt-16 flex flex-col gap-10 md:flex-row md:items-start md:gap-6">
+      <StaggerGroup className="mt-16 flex flex-col gap-10 md:flex-row md:items-start md:gap-6">
         {RESULTADOS.marcos.map((marco, i) => (
           <Fragment key={marco.dia}>
-            <div className="md:flex-1">
+            <StaggerItem className="md:flex-1">
               <div className="text-5xl font-bold tracking-tight text-zinc-100">
                 {marco.dia}
               </div>
@@ -28,8 +30,8 @@ export function Resultados() {
               <p className="mt-2 text-sm leading-relaxed text-zinc-400">
                 {marco.texto}
               </p>
-            </div>
-            {/* Linha conectora entre marcos — só no desktop */}
+            </StaggerItem>
+            {/* Linha conectora entre marcos, só no desktop */}
             {i < RESULTADOS.marcos.length - 1 && (
               <div
                 aria-hidden="true"
@@ -38,7 +40,7 @@ export function Resultados() {
             )}
           </Fragment>
         ))}
-      </div>
+      </StaggerGroup>
     </section>
   )
 }

@@ -5,8 +5,10 @@ import {
   IconPhoto,
 } from "@tabler/icons-react"
 import { PROJETOS } from "@/lib/constants"
+import { StaggerGroup, StaggerItem } from "@/components/ui/StaggerGroup"
 
-// Server Component (Prompt 5). Cards de conteúdo + grade 2x2 de placeholders.
+// Server Component. Cards de conteúdo (com stagger, Prompt 7) + grade 2x2 de
+// placeholders.
 const CARD_ICONES = [IconPencil, IconSearch, IconTargetArrow]
 
 export function Projetos() {
@@ -23,11 +25,11 @@ export function Projetos() {
       </p>
 
       {/* 3 cards de conteúdo */}
-      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <StaggerGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
         {PROJETOS.cards.map((card, i) => {
           const Icone = CARD_ICONES[i]
           return (
-            <div
+            <StaggerItem
               key={card.titulo}
               className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6"
             >
@@ -38,10 +40,10 @@ export function Projetos() {
               <p className="mt-2 text-sm leading-relaxed text-zinc-400">
                 {card.texto}
               </p>
-            </div>
+            </StaggerItem>
           )
         })}
-      </div>
+      </StaggerGroup>
 
       {/* Grade 2x2 de placeholders de projeto */}
       <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">

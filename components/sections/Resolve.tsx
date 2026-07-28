@@ -4,9 +4,10 @@ import {
   IconCalendarCheck,
 } from "@tabler/icons-react"
 import { RESOLVE } from "@/lib/constants"
+import { StaggerGroup, StaggerItem } from "@/components/ui/StaggerGroup"
 
-// Server Component (Prompt 5) — sem animação. O Framer Motion entra no Prompt 7.
-// Ícones ficam no componente (presentação); a copy vem de constants.
+// Server Component. As colunas entram escalonadas via Framer Motion (Prompt 7).
+// Ícones ficam no componente (apresentação); a copy vem de constants.
 const ICONES = [IconWorldWww, IconMessageCircle, IconCalendarCheck]
 
 export function Resolve() {
@@ -19,11 +20,11 @@ export function Resolve() {
         {RESOLVE.titulo}
       </h2>
 
-      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <StaggerGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
         {RESOLVE.colunas.map((coluna, i) => {
           const Icone = ICONES[i]
           return (
-            <div key={coluna.titulo}>
+            <StaggerItem key={coluna.titulo}>
               <Icone size={24} stroke={1.5} className="text-zinc-300" />
               <h3 className="mt-4 text-base font-medium text-zinc-100">
                 {coluna.titulo}
@@ -31,10 +32,10 @@ export function Resolve() {
               <p className="mt-2 text-sm leading-relaxed text-zinc-400">
                 {coluna.texto}
               </p>
-            </div>
+            </StaggerItem>
           )
         })}
-      </div>
+      </StaggerGroup>
     </section>
   )
 }
