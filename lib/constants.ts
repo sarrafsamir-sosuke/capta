@@ -15,14 +15,16 @@ export function linkWhatsApp(texto: string): string {
 }
 
 /**
- * Links do Nav do site principal.
- * Não existe seção "Pacotes" nesta versão do site, então o link aponta para o
- * CTA de diagnóstico — é lá que o plano/pacote é definido na conversa.
+ * Links do Nav. Usados nas duas páginas (home e /automacoes), então os links de
+ * seção são root-relative (`/#...`): na home o Lenis casa o pathname "/" e faz
+ * scroll suave; na /automacoes ele navega de volta para a home na seção certa.
+ * "Automações" aponta para a página dedicada. Não há seção "Pacotes"; o link vai
+ * ao CTA de diagnóstico, onde o plano é definido na conversa.
  */
 export const NAV_LINKS = [
-  { label: "Projetos", href: "#projetos" },
-  { label: "Automações", href: "#automacoes" },
-  { label: "Pacotes", href: "#diagnostico" },
+  { label: "Projetos", href: "/#projetos" },
+  { label: "Automações", href: "/automacoes" },
+  { label: "Pacotes", href: "/#diagnostico" },
 ] as const
 
 /** Textos da seção Hero (Prompt 4). Copy de docs/copy-final.md. */
@@ -145,6 +147,79 @@ export const AUTOMACOES = {
         texto: "Marcado. Você recebe uma confirmação em instantes.",
       },
     ],
+  },
+} as const
+
+/**
+ * Página dedicada /automacoes (Prompt 9). A copy vem do próprio Prompt 9;
+ * reescrita sem travessão (subheadline e passos usavam "—"). Os títulos das
+ * seções "Como funciona" e "O que está incluso" e os títulos curtos dos cards
+ * foram criados para o layout, seguindo o tom da copy existente.
+ */
+export const AUTOMACOES_PAGE = {
+  hero: {
+    eyebrow: "AUTOMAÇÃO DE WHATSAPP",
+    headline: "Seu atendimento funcionando às 23h, no feriado, no fim de semana.",
+    subheadline:
+      "Montamos o fluxo de atendimento automático para o seu negócio, testado e no ar em até 7 dias.",
+    cta: {
+      label: "Quero conversar",
+      texto: "Oi! Vim pela página de automações.",
+    },
+  },
+  comoFunciona: {
+    eyebrow: "COMO FUNCIONA",
+    titulo: "Do primeiro contato ao atendimento no ar",
+    passos: [
+      {
+        n: "01",
+        titulo: "Diagnóstico",
+        texto: "Entendemos como o seu cliente chega até você.",
+      },
+      {
+        n: "02",
+        titulo: "Configuração",
+        texto: "Montamos o atendimento com a sua linguagem.",
+      },
+      {
+        n: "03",
+        titulo: "Testes",
+        texto: "Testamos tudo antes de colocar no ar.",
+      },
+      {
+        n: "04",
+        titulo: "No ar",
+        texto: "Ativo em até 7 dias.",
+      },
+    ],
+  },
+  incluso: {
+    eyebrow: "O QUE ESTÁ INCLUSO",
+    titulo: "Tudo o que o seu atendimento automático faz por você",
+    cards: [
+      {
+        titulo: "Respostas 24 horas",
+        texto:
+          "As perguntas frequentes respondidas na hora, a qualquer momento do dia.",
+      },
+      {
+        titulo: "Agendamento automático",
+        texto:
+          "O cliente agenda e recebe a confirmação sozinho, sem depender de você.",
+      },
+      {
+        titulo: "Aviso no seu celular",
+        texto:
+          "Você é avisado a cada contato qualificado, pronto para decidir.",
+      },
+    ],
+  },
+  ctaFinal: {
+    texto: "Automação 100% funcional com testes realizados.",
+    cta: {
+      label: "Quero montar meu atendimento",
+      texto: "Oi! Quero montar o atendimento automático do meu negócio.",
+    },
   },
 } as const
 
