@@ -12,6 +12,16 @@ gsap.registerPlugin(ScrollTrigger)
 // navegação entre páginas (ex: /automacoes -> / #projetos).
 export const PENDING_SCROLL_KEY = "capta:scrollTo"
 
+// Curva/duração usadas SÓ nos scrollTo() pontuais de clique em navegação
+// (SectionLink), nunca na config global do Lenis abaixo. Se duration/easing
+// entrassem na config global, todo scroll de wheel/trackpad passaria a usar
+// esse tween também: o Lenis reinicia o tween (fromTo zera currentTime) a
+// cada evento de wheel, então o scroll contínuo nunca sai do início da curva
+// e "treme" quando a cauda de eventos de inércia do trackpad vai encolhendo
+// no fim do gesto. É essa reinicialização repetida que causava o tremido.
+export const LENIS_EASE = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+export const LENIS_DURATION = 1.2
+
 let lenisInstance: Lenis | null = null
 
 /** Instância atual do Lenis, usada pelo SectionLink pra rolar sem tocar na URL. */
@@ -33,8 +43,11 @@ export function LenisProvider({
     }
 
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      // lerp (não duration/easing) pro scroll de wheel/trackpad: é uma
+      // suavização por amortecimento contínuo (frame-rate independent),
+      // então re-computar o alvo a cada evento de wheel não reinicia
+      // nenhum relógio de animação, e o gesto termina sem tremido.
+      lerp: 0.1,
       smoothWheel: true,
       // O SectionLink já cuida dos cliques em âncora manualmente (sem
       // escrever hash na URL), então o anchors nativo do Lenis fica desligado.

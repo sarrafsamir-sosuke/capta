@@ -97,6 +97,31 @@ export const PROJETOS = {
 } as const
 
 /**
+ * Bloco "Protótipo em 12h" dentro de Projetos (substitui a antiga grade de
+ * cards "Em breve"). Não chamar de "protótipo" na copy pública: é a prévia
+ * visual do site antes de qualquer contrato, a proposta de valor central.
+ */
+export const PROTOTIPO = {
+  headline:
+    "Antes de assinar qualquer coisa, você já vê como o seu site vai ficar.",
+  subtexto:
+    "Depois de uma conversa rápida sobre o seu negócio, a gente monta uma prévia visual do seu site em até 12 horas. Você vê, mostra pra quem quiser, e só decide depois.",
+  inclusoLabel: "Quando você avançar, isso tudo entra",
+  incluso: [
+    "Design refinado para o seu nicho",
+    "Animações e microinterações",
+    "SEO técnico desde o dia 1",
+    "Otimizado para aparecer no ChatGPT e em buscas por IA (AIO/GEO)",
+    "LLM.txt configurado",
+    "Entrega em até 3 dias após aprovação",
+  ],
+  cta: {
+    label: "Quero ver como ficaria o meu site",
+    texto: "Oi! Vim pelo site da Capta e quero ver a prévia do meu site.",
+  },
+} as const
+
+/**
  * Seção Automação (Prompt 8). Copy de docs/copy-final.md §3, reescrita sem
  * travessão (subtítulo e resultado 2 usavam "—"). Os títulos curtos dos blocos
  * de resultado não existem no copy-final; foram criados para o layout ícone +

@@ -30,6 +30,19 @@ export function Hero() {
     // os caracteres dentro dela.
     const split = new SplitText(headline, { type: "words,chars" })
 
+    // O SplitText reflowa o layout ao quebrar a headline em spans, e sem
+    // isolamento no compositor isso "briga" com o layout durante a animação
+    // (tremido). Isola a headline (pai) e cada char (filho) no próprio layer
+    // antes do tween começar, pra pai e filhos formarem um único contexto.
+    // split.chars vem tipado como Element[] no .d.ts do gsap (mais genérico
+    // que o real: são sempre spans de texto, ou seja, HTMLElement).
+    const layers = [headline, ...(split.chars as HTMLElement[])]
+    layers.forEach((el) => {
+      el.style.willChange = "transform"
+      el.style.backfaceVisibility = "hidden"
+      el.style.transform = "translateZ(0)"
+    })
+
     // gsap.context recolhe todos os tweens e ScrollTriggers criados aqui dentro;
     // ctx.revert() no cleanup limpa tudo de uma vez.
     const ctx = gsap.context(() => {
@@ -40,6 +53,15 @@ export function Hero() {
         duration: 0.7,
         ease: "power3.out",
         delay: 0.2,
+        force3D: true,
+        onComplete: () => {
+          // O layer continua montado (o ScrollTrigger abaixo segue usando
+          // translateZ/force3D no scroll); só o hint de will-change é
+          // liberado, pra não gastar memória de compositor à toa depois.
+          layers.forEach((el) => {
+            el.style.willChange = "auto"
+          })
+        },
       })
 
       gsap.from(eyebrow, {
@@ -76,6 +98,7 @@ export function Hero() {
           gsap.set(headline, {
             opacity: 1 - self.progress * 1.5,
             y: self.progress * -40,
+            force3D: true,
           })
         },
       })

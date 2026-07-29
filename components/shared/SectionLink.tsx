@@ -2,7 +2,12 @@
 
 import type { AnchorHTMLAttributes, ReactNode } from "react"
 import { useRouter, usePathname } from "next/navigation"
-import { getLenis, PENDING_SCROLL_KEY } from "@/components/shared/LenisProvider"
+import {
+  getLenis,
+  PENDING_SCROLL_KEY,
+  LENIS_EASE,
+  LENIS_DURATION,
+} from "@/components/shared/LenisProvider"
 
 type SectionLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
   href: string
@@ -23,13 +28,26 @@ export function SectionLink({ href, children, ...props }: SectionLinkProps) {
     const [path, hash] = href.split("#")
     const targetPath = path || "/"
 
+    // duration/easing pontuais aqui (não na config global do Lenis): é um
+    // salto deliberado pra uma seção, não o scroll contínuo de wheel, então
+    // reiniciar essa curva neste único clique não causa o tremido que
+    // causaria se ficasse ligado o tempo todo. Ver LenisProvider.
     if (targetPath === pathname) {
       if (!hash) {
-        getLenis()?.scrollTo(0, { immediate: false })
+        getLenis()?.scrollTo(0, {
+          immediate: false,
+          duration: LENIS_DURATION,
+          easing: LENIS_EASE,
+        })
         return
       }
       const el = document.getElementById(hash)
-      if (el) getLenis()?.scrollTo(el, { immediate: false })
+      if (el)
+        getLenis()?.scrollTo(el, {
+          immediate: false,
+          duration: LENIS_DURATION,
+          easing: LENIS_EASE,
+        })
       return
     }
 
