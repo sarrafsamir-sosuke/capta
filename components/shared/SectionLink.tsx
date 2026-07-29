@@ -14,6 +14,16 @@ type SectionLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & 
   children: ReactNode
 }
 
+// O scrollTo() do Lenis força um scrollTo nativo a cada frame no thread
+// principal durante todo o salto. Num toque, isso concorre com o
+// whileInView do Framer Motion disparando em várias seções de uma vez
+// conforme o scroll rápido varre a página, o que travava no Safari do
+// iPhone. O scroll nativo do próprio navegador roda fora do thread
+// principal, então não disputa esse recurso; usado só em toque, o clique
+// no desktop mantém o mesmo salto cinematográfico de sempre.
+const ehToque = () =>
+  typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches
+
 // Substitui o <a href="#..."> puro: navega/rola sem nunca escrever o hash na
 // barra de endereço (era isso que fazia "/#projetos" aparecer pro usuário).
 // Mesma página: rola direto pelo Lenis. Página diferente: navega e guarda o
@@ -33,21 +43,28 @@ export function SectionLink({ href, children, ...props }: SectionLinkProps) {
     // reiniciar essa curva neste único clique não causa o tremido que
     // causaria se ficasse ligado o tempo todo. Ver LenisProvider.
     if (targetPath === pathname) {
+      const toque = ehToque()
+
       if (!hash) {
-        getLenis()?.scrollTo(0, {
-          immediate: false,
-          duration: LENIS_DURATION,
-          easing: LENIS_EASE,
-        })
+        if (toque) window.scrollTo({ top: 0, behavior: "smooth" })
+        else
+          getLenis()?.scrollTo(0, {
+            immediate: false,
+            duration: LENIS_DURATION,
+            easing: LENIS_EASE,
+          })
         return
       }
       const el = document.getElementById(hash)
-      if (el)
-        getLenis()?.scrollTo(el, {
-          immediate: false,
-          duration: LENIS_DURATION,
-          easing: LENIS_EASE,
-        })
+      if (el) {
+        if (toque) el.scrollIntoView({ behavior: "smooth", block: "start" })
+        else
+          getLenis()?.scrollTo(el, {
+            immediate: false,
+            duration: LENIS_DURATION,
+            easing: LENIS_EASE,
+          })
+      }
       return
     }
 

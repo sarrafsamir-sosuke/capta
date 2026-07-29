@@ -26,94 +26,126 @@ export function Hero() {
     const ctas = ctasRef.current
     if (!headline || !eyebrow || !subhead || !ctas) return
 
-    // words,chars: cada palavra vira um bloco que não quebra no meio; anima-se
-    // os caracteres dentro dela.
-    const split = new SplitText(headline, { type: "words,chars" })
+    let cancelado = false
+    let ctx: ReturnType<typeof gsap.context> | undefined
+    let split: SplitText | undefined
 
-    // O SplitText reflowa o layout ao quebrar a headline em spans, e sem
-    // isolamento no compositor isso "briga" com o layout durante a animação
-    // (tremido). Isola a headline (pai) e cada char (filho) no próprio layer
-    // antes do tween começar, pra pai e filhos formarem um único contexto.
-    // split.chars vem tipado como Element[] no .d.ts do gsap (mais genérico
-    // que o real: são sempre spans de texto, ou seja, HTMLElement).
-    const layers = [headline, ...(split.chars as HTMLElement[])]
-    layers.forEach((el) => {
-      el.style.willChange = "transform"
-      el.style.backfaceVisibility = "hidden"
-      el.style.transform = "translateZ(0)"
-    })
+    const animar = () => {
+      if (cancelado) return
 
-    // gsap.context recolhe todos os tweens e ScrollTriggers criados aqui dentro;
-    // ctx.revert() no cleanup limpa tudo de uma vez.
-    const ctx = gsap.context(() => {
-      gsap.from(split.chars, {
-        opacity: 0,
-        y: 30,
-        stagger: 0.025,
-        duration: 0.7,
-        ease: "power3.out",
-        delay: 0.2,
-        force3D: true,
-        onComplete: () => {
-          // O layer continua montado (o ScrollTrigger abaixo segue usando
-          // translateZ/force3D no scroll); só o hint de will-change é
-          // liberado, pra não gastar memória de compositor à toa depois.
-          layers.forEach((el) => {
-            el.style.willChange = "auto"
+      // words,chars: cada palavra vira um bloco que não quebra no meio; anima-se
+      // os caracteres dentro dela.
+      const s = new SplitText(headline, { type: "words,chars" })
+      split = s
+
+      // O SplitText reflowa o layout ao quebrar a headline em spans, e sem
+      // isolamento no compositor isso "briga" com o layout durante a animação
+      // (tremido). Isola a headline (pai) e cada char (filho) no próprio layer
+      // antes do tween começar, pra pai e filhos formarem um único contexto.
+      // s.chars vem tipado como Element[] no .d.ts do gsap (mais genérico
+      // que o real: são sempre spans de texto, ou seja, HTMLElement).
+      const layers = [headline, ...(s.chars as HTMLElement[])]
+      layers.forEach((el) => {
+        el.style.willChange = "transform"
+        el.style.backfaceVisibility = "hidden"
+        el.style.transform = "translateZ(0)"
+      })
+
+      // gsap.context recolhe todos os tweens e ScrollTriggers criados aqui dentro;
+      // ctx.revert() no cleanup limpa tudo de uma vez.
+      ctx = gsap.context(() => {
+        gsap.from(s.chars, {
+          opacity: 0,
+          y: 30,
+          stagger: 0.025,
+          duration: 0.7,
+          ease: "power3.out",
+          delay: 0.2,
+          force3D: true,
+          onComplete: () => {
+            // O layer continua montado (o ScrollTrigger abaixo segue usando
+            // translateZ/force3D no scroll); só o hint de will-change é
+            // liberado, pra não gastar memória de compositor à toa depois.
+            layers.forEach((el) => {
+              el.style.willChange = "auto"
+            })
+          },
+        })
+
+        gsap.from(eyebrow, {
+          opacity: 0,
+          y: 10,
+          duration: 0.5,
+          ease: "power2.out",
+        })
+
+        gsap.from(subhead, {
+          opacity: 0,
+          y: 16,
+          duration: 0.5,
+          ease: "power2.out",
+          delay: 0.6,
+        })
+
+        gsap.from(ctas, {
+          opacity: 0,
+          y: 16,
+          duration: 0.5,
+          ease: "power2.out",
+          delay: 0.9,
+        })
+
+        // Efeito de scroll (headline sobe e some) só a partir do md: no
+        // mobile é mais um cálculo por frame competindo com o scroll rápido
+        // do clique em "Ver como funciona" (ver SectionLink.tsx), e
+        // contribuía pro travamento relatado no Safari do iPhone.
+        // scrub: 2 (nunca true) para o movimento acompanhar o scroll com
+        // leve atraso cinematográfico.
+        if (window.matchMedia("(min-width: 768px)").matches) {
+          ScrollTrigger.create({
+            trigger: headline,
+            start: "top top",
+            end: "bottom top",
+            scrub: 2,
+            onUpdate: (self) => {
+              gsap.set(headline, {
+                opacity: 1 - self.progress * 1.5,
+                y: self.progress * -40,
+                force3D: true,
+              })
+            },
           })
-        },
+        }
       })
+    }
 
-      gsap.from(eyebrow, {
-        opacity: 0,
-        y: 10,
-        duration: 0.5,
-        ease: "power2.out",
-      })
-
-      gsap.from(subhead, {
-        opacity: 0,
-        y: 16,
-        duration: 0.5,
-        ease: "power2.out",
-        delay: 0.6,
-      })
-
-      gsap.from(ctas, {
-        opacity: 0,
-        y: 16,
-        duration: 0.5,
-        ease: "power2.out",
-        delay: 0.9,
-      })
-
-      // Headline sobe e some conforme o scroll. scrub: 2 (nunca true) para o
-      // movimento acompanhar o scroll com leve atraso cinematográfico.
-      ScrollTrigger.create({
-        trigger: headline,
-        start: "top top",
-        end: "bottom top",
-        scrub: 2,
-        onUpdate: (self) => {
-          gsap.set(headline, {
-            opacity: 1 - self.progress * 1.5,
-            y: self.progress * -40,
-            force3D: true,
-          })
-        },
-      })
-    })
+    // Só divide/anima a headline depois que a fonte (Sora) carregou. Fazer
+    // isso antes mede os caracteres com a fonte de fallback; a troca
+    // (font-display: swap) reflowa a headline inteira no meio da animação,
+    // o que travava bem no início, principalmente no mobile, onde a fonte
+    // demora mais pra chegar.
+    if (document.fonts && document.fonts.status !== "loaded") {
+      document.fonts.ready.then(animar)
+    } else {
+      animar()
+    }
 
     return () => {
-      ctx.revert()
-      split.revert()
+      cancelado = true
+      ctx?.revert()
+      split?.revert()
     }
   }, [mounted])
 
   return (
     <section
       id="hero"
-      className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-5 pt-24 pb-16 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]"
+      // min-h-[100svh] depois do min-h-screen: no Safari mobile, 100vh usa a
+      // altura SEM a barra de endereço (a maior possível), então a página
+      // carrega grande demais e reflowa assim que a barra se ajusta, bem na
+      // hora da animação de entrada. 100svh é a menor altura garantida e não
+      // muda com a barra, então não reflowa.
+      className="mx-auto flex min-h-screen min-h-[100svh] max-w-6xl flex-col justify-center px-5 pt-24 pb-16 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]"
     >
       <p
         ref={eyebrowRef}
