@@ -13,7 +13,10 @@ const CARD_ICONES = [IconPencil, IconSearch, IconTargetArrow]
 
 export function Projetos() {
   return (
-    <section id="projetos" className="mx-auto max-w-6xl px-6 py-24">
+    <section
+      id="projetos"
+      className="mx-auto max-w-6xl px-5 py-24 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]"
+    >
       <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
         {PROJETOS.eyebrow}
       </p>
@@ -25,7 +28,7 @@ export function Projetos() {
       </p>
 
       {/* 3 cards de conteúdo */}
-      <StaggerGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <StaggerGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {PROJETOS.cards.map((card, i) => {
           const Icone = CARD_ICONES[i]
           return (

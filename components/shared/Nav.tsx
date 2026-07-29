@@ -5,7 +5,7 @@ import { NAV_LINKS, linkWhatsApp } from "@/lib/constants"
 export function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-sm">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]">
         <a href="/#hero" className="text-lg font-semibold tracking-tight text-zinc-100">
           CAPTA
         </a>

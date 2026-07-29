@@ -30,7 +30,7 @@ export default function AutomacoesPage() {
       <Nav />
       <main>
         {/* Hero da página */}
-        <section className="mx-auto max-w-6xl px-6 pt-24 pb-16">
+        <section className="mx-auto max-w-6xl px-5 pt-24 pb-16 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]">
           <RevealSection>
             <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
               {hero.eyebrow}
@@ -56,7 +56,7 @@ export default function AutomacoesPage() {
         </section>
 
         {/* Como funciona — 4 passos */}
-        <section className="mx-auto max-w-6xl px-6 py-16">
+        <section className="mx-auto max-w-6xl px-5 py-16 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]">
           <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
             {comoFunciona.eyebrow}
           </p>
@@ -82,14 +82,14 @@ export default function AutomacoesPage() {
         </section>
 
         {/* Chat demo centralizado */}
-        <section className="mx-auto max-w-6xl px-6 py-16">
+        <section className="mx-auto max-w-6xl px-5 py-16 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]">
           <RevealSection className="flex justify-center">
             <ChatDemo />
           </RevealSection>
         </section>
 
         {/* O que está incluso — 3 cards */}
-        <section className="mx-auto max-w-6xl px-6 py-16">
+        <section className="mx-auto max-w-6xl px-5 py-16 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]">
           <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
             {incluso.eyebrow}
           </p>
@@ -97,7 +97,7 @@ export default function AutomacoesPage() {
             {incluso.titulo}
           </h2>
 
-          <StaggerGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <StaggerGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
             {incluso.cards.map((card, i) => {
               const Icone = INCLUSO_ICONES[i]
               return (
@@ -119,7 +119,7 @@ export default function AutomacoesPage() {
         </section>
 
         {/* CTA final */}
-        <section className="mx-auto max-w-3xl px-6 py-24 text-center">
+        <section className="mx-auto max-w-3xl px-5 py-24 text-center md:px-6">
           <RevealSection>
             <p className="text-2xl font-bold tracking-tight text-zinc-100 md:text-3xl">
               {ctaFinal.texto}

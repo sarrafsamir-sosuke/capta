@@ -5,7 +5,7 @@ import { FOOTER, linkWhatsApp } from "@/lib/constants"
 export function Footer() {
   return (
     <footer className="border-t border-zinc-800">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-8 sm:flex-row sm:justify-between">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-5 py-8 sm:flex-row sm:justify-between md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]">
         <p className="text-sm text-zinc-500">{FOOTER.linha}</p>
         <a
           href={linkWhatsApp(FOOTER.whatsappTexto)}

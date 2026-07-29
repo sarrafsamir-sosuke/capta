@@ -12,7 +12,10 @@ const ICONES = [IconWorldWww, IconMessageCircle, IconCalendarCheck]
 
 export function Resolve() {
   return (
-    <section id="resolve" className="mx-auto max-w-6xl px-6 py-24">
+    <section
+      id="resolve"
+      className="mx-auto max-w-6xl px-5 py-24 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]"
+    >
       <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
         {RESOLVE.eyebrow}
       </p>
@@ -20,7 +23,7 @@ export function Resolve() {
         {RESOLVE.titulo}
       </h2>
 
-      <StaggerGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <StaggerGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {RESOLVE.colunas.map((coluna, i) => {
           const Icone = ICONES[i]
           return (

@@ -11,7 +11,10 @@ export function Automacoes() {
   const { titulo, subtitulo, resultados, nota } = AUTOMACOES
 
   return (
-    <section id="automacoes" className="mx-auto max-w-6xl px-6 py-24">
+    <section
+      id="automacoes"
+      className="mx-auto max-w-6xl px-5 py-24 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]"
+    >
       <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
         {AUTOMACOES.eyebrow}
       </p>

@@ -6,7 +6,10 @@ import { StaggerGroup, StaggerItem } from "@/components/ui/StaggerGroup"
 // ligados por uma linha.
 export function Resultados() {
   return (
-    <section id="resultados" className="mx-auto max-w-6xl px-6 py-24">
+    <section
+      id="resultados"
+      className="mx-auto max-w-6xl px-5 py-24 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]"
+    >
       <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
         {RESULTADOS.eyebrow}
       </p>

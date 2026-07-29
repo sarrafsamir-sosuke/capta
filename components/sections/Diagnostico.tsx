@@ -8,7 +8,7 @@ export function Diagnostico() {
   return (
     <section
       id="diagnostico"
-      className="mx-auto max-w-3xl px-6 py-24 text-center"
+      className="mx-auto max-w-3xl px-5 py-24 text-center md:px-6"
     >
       <RevealSection>
         <h2 className="text-3xl font-bold tracking-tight text-zinc-100 md:text-4xl">

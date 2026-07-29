@@ -89,7 +89,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-6 pt-24 pb-16"
+      className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-5 pt-24 pb-16 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]"
     >
       <p
         ref={eyebrowRef}
@@ -100,7 +100,7 @@ export function Hero() {
 
       <h1
         ref={headlineRef}
-        className="mb-6 max-w-3xl text-5xl font-bold leading-[1.1] tracking-tight text-zinc-100 md:text-7xl"
+        className="mb-6 max-w-3xl text-4xl font-bold leading-[1.1] tracking-tight text-zinc-100 md:text-5xl xl:text-7xl"
       >
         {HERO.headline}
       </h1>
@@ -112,19 +112,19 @@ export function Hero() {
         {HERO.subheadline}
       </p>
 
-      <div ref={ctasRef} className="flex flex-col gap-3 sm:flex-row">
+      <div ref={ctasRef} className="flex w-full flex-col gap-3 md:w-auto md:flex-row">
         <a
           href={linkWhatsApp(HERO.ctaPrimario.texto)}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-100"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-100 md:w-auto"
         >
           <IconBrandWhatsapp size={16} />
           {HERO.ctaPrimario.label}
         </a>
         <a
           href={HERO.ctaSecundario.href}
-          className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 px-5 py-2.5 text-sm text-zinc-300 transition-colors hover:border-zinc-500 hover:text-zinc-100"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-zinc-700 px-5 py-2.5 text-sm text-zinc-300 transition-colors hover:border-zinc-500 hover:text-zinc-100 md:w-auto"
         >
           {HERO.ctaSecundario.label}
         </a>

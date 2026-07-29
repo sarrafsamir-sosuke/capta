@@ -16,6 +16,11 @@ const config: Config = {
         // browser procurar a fonte instalada na máquina e cair no fallback.
         sans: ["var(--font-sora)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
+      screens: {
+        // Breakpoint "TV" do Prompt 10 (1920px+): telas grandes ganham um
+        // max-width maior nos containers. Extend mantém sm/md/lg/xl/2xl padrão.
+        tv: "1920px",
+      },
     },
   },
   plugins: [tailwindcssAnimate],
