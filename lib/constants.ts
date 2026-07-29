@@ -276,6 +276,43 @@ export const RESULTADOS = {
   ],
 } as const
 
+/**
+ * Seção FAQ (SEO técnico + AIO). Mesmas perguntas/respostas usadas no
+ * JSON-LD (FAQPage) em components/shared/StructuredData.tsx: uma fonte só de
+ * texto, servida tanto para o visitante quanto para Google/IA.
+ */
+export const FAQ = {
+  eyebrow: "DÚVIDAS FREQUENTES",
+  titulo: "Perguntas que a gente já respondeu antes",
+  perguntas: [
+    {
+      pergunta: "Quanto custa um site profissional em São Luís?",
+      resposta:
+        "Na Capta, sites institucionais para pequenas empresas em São Luís custam a partir de R$700. O valor depende do escopo: número de seções, integrações e nível de personalização. A entrega é feita em até 3 dias após a aprovação do briefing.",
+    },
+    {
+      pergunta: "O site vai aparecer no Google?",
+      resposta:
+        "Sim. Todo site entregue pela Capta já sai otimizado para SEO local: meta tags, structured data, sitemap, Google Search Console configurado e texto escrito para os termos que o seu cliente pesquisa em São Luís.",
+    },
+    {
+      pergunta: "O que é automação de atendimento no WhatsApp?",
+      resposta:
+        "É um sistema que responde automaticamente às mensagens dos seus clientes no WhatsApp: horários, preços, agendamentos, com a sua linguagem, 24 horas por dia. Você só entra na conversa quando o cliente está pronto para fechar.",
+    },
+    {
+      pergunta: "Em quanto tempo o site fica pronto?",
+      resposta:
+        "Em até 3 dias úteis após a aprovação do briefing. Antes de fechar, você ainda recebe uma prévia visual do site em até 12 horas após nossa conversa inicial.",
+    },
+    {
+      pergunta: "A Capta atende fora de São Luís?",
+      resposta:
+        "Sim. Embora o foco seja São Luís, MA, a Capta atende clientes em todo o Brasil de forma remota.",
+    },
+  ],
+} as const
+
 /** Seção CTA diagnóstico (Prompt 5). Copy de docs/copy-final.md §5. */
 export const DIAGNOSTICO = {
   titulo:

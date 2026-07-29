@@ -14,7 +14,9 @@ import { StaggerGroup, StaggerItem } from "@/components/ui/StaggerGroup"
 import { AUTOMACOES_PAGE, linkWhatsApp } from "@/lib/constants"
 
 export const metadata: Metadata = {
-  title: "Automação de WhatsApp · Capta",
+  // Sem "· Capta" aqui: o template do metadata global (app/layout.tsx) já
+  // acrescenta " | Capta" a todo title de página filha.
+  title: "Automação de WhatsApp",
   description:
     "Atendimento automático no WhatsApp para o seu negócio em São Luís. Responde, agenda e avisa você, no ar em até 7 dias.",
 }

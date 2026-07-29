@@ -1,0 +1,24 @@
+# Capta
+
+> Agência digital que cria sites profissionais e automação de atendimento via WhatsApp para micro e pequenas empresas em São Luís, Maranhão, Brasil.
+
+A Capta atende negócios locais (clínicas, academias, prestadores de serviço e comércio) que precisam de presença digital que gera contato, não só existir. Entrega em até 3 dias após a aprovação do briefing. Atende remotamente clientes em todo o Brasil.
+
+## Serviços
+
+- Criação de sites institucionais otimizados para SEO local (Google) e para IA (AIO/GEO), com texto escrito para os termos que o cliente da empresa pesquisa.
+- Automação de atendimento no WhatsApp: responde perguntas frequentes, agenda e avisa o dono do negócio quando o cliente está pronto para decidir. Testada e no ar em até 7 dias.
+
+## Preço
+
+Sites institucionais a partir de R$700, variando com o escopo (número de seções, integrações, personalização).
+
+## Contato
+
+- WhatsApp: https://wa.me/5591993779948
+- Site: https://capta-beta.vercel.app
+
+## Páginas
+
+- [Site principal](https://capta-beta.vercel.app): apresentação da Capta, o que resolve, projetos, resultados e perguntas frequentes.
+- [Automação de WhatsApp](https://capta-beta.vercel.app/automacoes): como funciona a automação de atendimento, passo a passo e o que está incluso.
