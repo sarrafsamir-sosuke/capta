@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
 import { IconChevronDown } from "@tabler/icons-react"
 import { FAQ } from "@/lib/constants"
 import { RevealSection } from "@/components/ui/RevealSection"
@@ -47,21 +46,28 @@ export function Faq() {
                   }`}
                 />
               </button>
-              <AnimatePresence initial={false}>
-                {estaAberto && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                    className="overflow-hidden"
+              {/*
+                Anima via grid-template-rows (0fr -> 1fr) em vez de height,
+                que força reflow a cada frame e travava no celular. O truque
+                do grid deixa o navegador animar sem recalcular layout do
+                resto da página a cada frame.
+              */}
+              <div
+                aria-hidden={!estaAberto}
+                className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                  estaAberto ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <p
+                    className={`pb-5 pr-8 text-sm leading-relaxed text-zinc-400 transition-opacity duration-300 ${
+                      estaAberto ? "opacity-100" : "opacity-0"
+                    }`}
                   >
-                    <p className="pb-5 pr-8 text-sm leading-relaxed text-zinc-400">
-                      {item.resposta}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                    {item.resposta}
+                  </p>
+                </div>
+              </div>
             </StaggerItem>
           )
         })}
