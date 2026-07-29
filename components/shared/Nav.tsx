@@ -1,24 +1,25 @@
 import { IconBrandWhatsapp } from "@tabler/icons-react"
 import { NAV_LINKS, linkWhatsApp } from "@/lib/constants"
+import { SectionLink } from "@/components/shared/SectionLink"
 
-// Server Component: nada de estado ou evento aqui, só marcação e estilo.
+// Server Component: renderiza o SectionLink (client) pra rolagem sem hash na URL.
 export function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-6 xl:max-w-[1200px] tv:max-w-[1400px]">
-        <a href="/#hero" className="text-lg font-semibold tracking-tight text-zinc-100">
+        <SectionLink href="/#hero" className="text-lg font-semibold tracking-tight text-zinc-100">
           CAPTA
-        </a>
+        </SectionLink>
 
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
-              <a
+              <SectionLink
                 href={link.href}
                 className="text-sm text-zinc-400 transition-colors hover:text-zinc-100"
               >
                 {link.label}
-              </a>
+              </SectionLink>
             </li>
           ))}
         </ul>

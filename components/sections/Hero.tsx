@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { IconBrandWhatsapp, IconArrowDown } from "@tabler/icons-react"
 import { HERO, linkWhatsApp } from "@/lib/constants"
 import { gsap, ScrollTrigger, SplitText } from "@/lib/gsap"
+import { SectionLink } from "@/components/shared/SectionLink"
 
 export function Hero() {
   const eyebrowRef = useRef<HTMLParagraphElement>(null)
@@ -122,12 +123,12 @@ export function Hero() {
           <IconBrandWhatsapp size={16} />
           {HERO.ctaPrimario.label}
         </a>
-        <a
+        <SectionLink
           href={HERO.ctaSecundario.href}
           className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-zinc-700 px-5 py-2.5 text-sm text-zinc-300 transition-colors hover:border-zinc-500 hover:text-zinc-100 md:w-auto"
         >
           {HERO.ctaSecundario.label}
-        </a>
+        </SectionLink>
       </div>
 
       <div className="mt-20 flex justify-center">
